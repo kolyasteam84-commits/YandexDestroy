@@ -1,2 +1,2 @@
 # YandexDestroy
-YandexDestroyer[RUS]
+YandexDestroyer - Program for deleting yandex pack loader.
