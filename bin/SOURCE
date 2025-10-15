@@ -1,0 +1,77 @@
+//Source Code by @KOLYA_532			 (YouTube)
+//Decoded by @KOLYA_532 				(YouTube)
+//NOCHCP
+
+@echo off
+chcp 65001
+title YandexDestroyer
+color a
+cls
+
+:MainMenu
+echo РњРµРЅСЋ YandexDestroyer
+echo _________________________
+echo Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ!
+echo Р”РѕСЃС‚СѓРїРЅС‹Рµ РєРѕРјР°РЅРґС‹:
+echo about - Рћ РїСЂРѕРіСЂР°РјРјРµ
+echo startd - Р’РєР». Р—Р°С‰РёС‚Сѓ
+echo quit - Р’С‹Р№С‚Рё
+echo _________________________
+set /p "choice=Action: "
+
+if "%choice%"=="about" goto AboutProgram
+if "%choice%"=="startd" goto DestroyYandex
+if "%choice%"=="quit" goto QuitProgram
+if "%choice%"=="devmode" goto DeveloperMode
+
+echo РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РІС‹Р±РѕСЂ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.
+pause
+cls
+goto MainMenu
+
+:DestroyYandex
+echo РљРѕРЅСЃРѕР»СЊ
+echo _________________________
+set "targetDir=C:\Users\User\Downloads"
+cd /d "%targetDir%"
+if not exist "DeletedFiles" md "DeletedFiles"
+
+if exist "yandexpackloader.exe" (
+	taskkill /f /im browser.exe 2>nul
+	taskkill /f /im yandex.exe 2>nul
+    echo Detected File: yandexpackloader.exe, starting deleting...
+) else (
+    echo File yandexpackloader.exe not found...
+)
+
+for /r "%targetDir%" %%i in (yandexpackloader.exe) do (
+    echo Detected File: %%i
+    echo Creating dir DeletedFiles...
+    if not exist "DeletedFiles" md "DeletedFiles"
+    echo Dragging %%i in DeletedFiles
+    move /y "%%i" "DeletedFiles\"
+)
+
+echo Deleting Folder: DeletedFiles...
+rmdir /s /q "DeletedFiles"
+
+
+cls
+goto DestroyYandex
+
+
+:AboutProgram
+cls
+echo Рћ РїСЂРѕРіСЂР°РјРјРµ
+echo _________________________
+echo Р’СЃРµС… СѓР¶Рµ РґРѕСЃС‚Р°Р»Рѕ, С‡С‚Рѕ РєРѕРіРґР° С‚С‹ РЅР°Р¶РёРјР°РµС€СЊ РєРЅРѕРїРєСѓ РЎРљРђР§РђРўР¬, 
+echo РїРѕСЃС‚РѕСЏРЅРЅРѕ СЃРєР°С‡РёРІР°РµС‚СЃСЏ СЌС‚РѕС‚ РІСЃРµС… РґРѕСЃС‚Р°РІС€РёР№ РЇРЅРґРµРєСЃ.
+echo Р Р°Р·СЂР°Р±РѕС‚С‡РёРє - @kolya_532 (YouTube)
+echo.
+echo РќР°Р¶РјРёС‚Рµ Р»СЋР±СѓСЋ РєР»Р°РІРёС€Сѓ, С‡С‚РѕР±С‹ РІРµСЂРЅСѓС‚СЊСЃСЏ РІ РјРµРЅСЋ...
+pause >nul
+cls
+goto MainMenu
+
+:QuitProgram
+exit
